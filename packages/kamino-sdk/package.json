@@ -1,16 +1,16 @@
 {
-  "name": "@hubbleprotocol/kamino-sdk",
+  "name": "@marinade.finance/kamino-sdk",
   "description": "Kamino SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "2.2.21",
+  "version": "2.2.21.1",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hubbleprotocol/hubble-common.git"
+    "url": "git+https://github.com/marinade-finance/hubble-common.git"
   },
   "keywords": [
     "hubble",
@@ -23,9 +23,9 @@
   "author": "Hubble Protocol",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/hubbleprotocol/hubble-common/issues"
+    "url": "https://github.com/marinade-finance/hubble-common/issues"
   },
-  "homepage": "https://github.com/hubbleprotocol/hubble-common/blob/master/packages/kamino-sdk",
+  "homepage": "https://github.com/marinade-finance/hubble-common/blob/master/packages/kamino-sdk",
   "devDependencies": {
     "@types/bn.js": "^5.1.0",
     "@types/chai-as-promised": "^7.1.4",

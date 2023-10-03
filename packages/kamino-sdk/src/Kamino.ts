@@ -1054,6 +1054,14 @@ export class Kamino {
     }
   };
 
+  getStrategiesForSharedData = async (
+    strategyFilters: StrategiesFilters | PublicKey[]
+  ): Promise<Array<StrategyWithAddress>> => {
+    return Array.isArray(strategyFilters)
+      ? await this.getStrategiesWithAddresses(strategyFilters)
+      : await this.getAllStrategiesWithFilters(strategyFilters);
+  };
+
   /**
    * Batch fetch share data for all or a filtered list of strategies
    * @param strategyFilters strategy filters or a list of strategy public keys
@@ -1061,10 +1069,15 @@ export class Kamino {
   getStrategiesShareData = async (
     strategyFilters: StrategiesFilters | PublicKey[]
   ): Promise<Array<ShareDataWithAddress>> => {
+    return await this.getStrategiesShareDataWithFn(strategyFilters, this.getStrategiesForSharedData);
+  };
+
+  getStrategiesShareDataWithFn = async (
+    strategyFilters: StrategiesFilters | PublicKey[],
+    getStrategiesFn: (strategyFilters: StrategiesFilters | PublicKey[]) => Promise<Array<StrategyWithAddress>>
+  ): Promise<Array<ShareDataWithAddress>> => {
     const result: Array<ShareDataWithAddress> = [];
-    const strategiesWithAddresses = Array.isArray(strategyFilters)
-      ? await this.getStrategiesWithAddresses(strategyFilters)
-      : await this.getAllStrategiesWithFilters(strategyFilters);
+    const strategiesWithAddresses = await getStrategiesFn(strategyFilters);
     const fetchBalances: Promise<StrategyBalanceWithAddress>[] = [];
     const allScopePrices = strategiesWithAddresses.map((x) => x.strategy.scopePrices);
     const scopePrices = await this._scope.getMultipleOraclePrices(allScopePrices);
