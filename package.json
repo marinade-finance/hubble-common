@@ -24,7 +24,7 @@
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "chai-decimaljs": "^0.0.1",
-    "lerna": "^4.0.0",
+    "lerna": "^8.1.9",
     "mocha": "^10.2.0",
     "mocha-sinon": "^2.1.2",
     "prettier": "^3.0.3",
